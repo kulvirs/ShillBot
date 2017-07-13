@@ -88,7 +88,7 @@ class TestWorkerBasic(unittest.TestCase):
         Expectation: IOError is raised.
         """
         worker = BasicUserParseWorker("http://gdalskjfakl.com/")
-        self.assertRaises(IOError,worker.run)
+        self.assertRaises(WorkerExceptionError,worker.run)
 
 
 
