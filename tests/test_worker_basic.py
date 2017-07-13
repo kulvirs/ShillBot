@@ -4,7 +4,7 @@ import codecs
 import os
 
 from workers.basic_worker import BasicUserParseWorker
-from mothership.base import MothershipServer
+from workers.basic_worker import WorkerException
 
 
 class TestWorkerBasic(unittest.TestCase):
@@ -85,10 +85,10 @@ class TestWorkerBasic(unittest.TestCase):
     def test_worker_invalid_links(self):
         """
         Purpose: Test running of worker if it is given an invalid link to crawl (a link that returns 404).
-        Expectation: IOError is raised.
+        Expectation: Exception is raised.
         """
         worker = BasicUserParseWorker("http://gdalskjfakl.com/")
-        self.assertRaises(Exception,worker.run)
+        self.assertRaises(WorkerException,worker.run)
 
 
 
