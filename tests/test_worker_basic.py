@@ -4,6 +4,7 @@ import codecs
 import os
 
 from workers.basic_worker import BasicUserParseWorker
+from mothership.base import MothershipServer
 
 
 class TestWorkerBasic(unittest.TestCase):
@@ -67,6 +68,9 @@ class TestWorkerBasic(unittest.TestCase):
 
         :return:
         """
+        server = MothershipServer();
+        server.run;
+        
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
         
