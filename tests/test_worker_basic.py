@@ -65,8 +65,6 @@ class TestWorkerBasic(unittest.TestCase):
         """
         Purpose: Test if worker.to_crawl and worker.crawled are updated correctly after links are crawled
         Expectation: Once all links are crawled, len_to_crawl should be 0 and len crawled should be equal to number of links
-
-        :return:
         """
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
@@ -84,11 +82,27 @@ class TestWorkerBasic(unittest.TestCase):
         
     def test_worker_invalid_links(self):
         """
-        Purpose: Test running of worker if it is given an invalid link to crawl (a link that returns 404).
-        Expectation: Exception is raised.
+        Purpose: Test running of Worker if it is given an invalid link to crawl (a link that returns 404).
+        Expectation: WorkerException is raised.
         """
+        #the following link: http://gdalskjfakl.com/ was invalid at the time this test was written
         worker = BasicUserParseWorker("http://gdalskjfakl.com/")
         self.assertRaises(WorkerException,worker.run)
+        
+    def test_worker_add_links_list(self):
+        """
+        Purpose: Test adding a list of links to worker to_crawl
+        Expectation: The size of to_crawl increases by the size of the list
+        """
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        len_to_crawl_before = len(worker.to_crawl)
+        
+        li = ["www.firstlink.com","www.secondlink.com","www.thirdlink.com"]
+        worker.add_links(li);
+        
+        len_to_crawl_after = len(worker.to_crawl)
+        
+        self.assertEqual(len_to_crawl_before+len(li),len_to_crawl_after)
 
 
 
