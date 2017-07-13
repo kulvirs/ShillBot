@@ -67,13 +67,16 @@ class TestWorkerBasic(unittest.TestCase):
 
         :return:
         """
-        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        worker = BasicUserParseWorker()
+        worker.to_crawl = []
         worker.crawled = []
+        
+        worker.add_links("https://www.reddit.com/user/Chrikelnel")
         
         len_to_crawl_before = len(worker.to_crawl)
         len_crawled_before = len(worker.crawled)
 
-        worker.run
+        worker.run()
 
         len_to_crawl_after = len(worker.to_crawl)
         len_crawled_after = len(worker.crawled)
