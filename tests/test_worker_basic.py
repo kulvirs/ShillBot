@@ -94,13 +94,13 @@ class TestWorkerBasic(unittest.TestCase):
         Purpose: Test adding a list of links to worker to_crawl
         Expectation: The size of to_crawl increases by the size of the list
         """
-        worker2 = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         len_to_crawl_before = len(worker2.to_crawl)
         
-        li = ["www.firstlink.com","www.secondlink.com","www.thirdlink.com"]
-        worker2.add_links(li);
+        li = ["https://www.reddit.com/user/Chrikelnel/comments/","https://www.reddit.com/user/Chrikelnel/submitted/","https://www.reddit.com/user/Chrikelnel/gilded/"]
+        worker.add_links(li);
         
-        len_to_crawl_after = len(worker2.to_crawl)
+        len_to_crawl_after = len(worker.to_crawl)
         
         self.assertEqual(len_to_crawl_before+len(li),len_to_crawl_after)
 
