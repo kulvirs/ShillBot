@@ -84,11 +84,11 @@ class TestWorkerBasic(unittest.TestCase):
         
     def test_worker_invalid_links(self):
         """
-        Purpose: Test running of worker if it is given an invalid link to crawl.
-        Expectation: WorkerException is raised.
+        Purpose: Test running of worker if it is given an invalid link to crawl (a link that returns 404).
+        Expectation: IOError is raised.
         """
         worker = BasicUserParseWorker("http://gdalskjfakl.com/")
-        self.assertRaises(WorkerException,worker.run)
+        self.assertRaises(IOError,worker.run)
 
 
 
