@@ -82,7 +82,7 @@ class TestWorkerBasic(unittest.TestCase):
         self.assertEqual(len_to_crawl_after,0)
         self.assertEqual(len_crawled_before+num_links_to_crawl,len_crawled_after)
         
-    def test_worker_invalid_links(self)
+    def test_worker_invalid_links(self):
         """
         Purpose: Test running of worker if it is given an invalid link to crawl.
         Expectation: WorkerException is raised.
