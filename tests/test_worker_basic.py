@@ -79,7 +79,7 @@ class TestWorkerBasic(unittest.TestCase):
         len_to_crawl_after = len(worker.to_crawl)
         len_crawled_after = len(worker.crawled)
 
-        self.assertEqual(len_to_crawl_before,0)
+        self.assertEqual(len_to_crawl_before,len_to_crawl_after+len_crawled_after)
         self.assertEqual(len_crawled_before+len_to_crawl_before,len_crawled_after)
 
 
