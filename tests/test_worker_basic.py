@@ -74,7 +74,6 @@ class TestWorkerBasic(unittest.TestCase):
         len_to_crawl_before = len(worker.to_crawl)
         len_crawled_before = len(worker.crawled)
 
-        worker.run()
         self.assertRaises(ConnectionRefusedError, worker.run)
 
         len_to_crawl_after = len(worker.to_crawl)
