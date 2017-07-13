@@ -64,7 +64,7 @@ class TestWorkerBasic(unittest.TestCase):
     def test_worker_crawl_links(self):
         """
         Purpose: Test if worker.to_crawl and worker.crawled are updated correctly after a link is crawled
-        Expectation: Everytime a link is crawled, length of to_crawl decreases by 1 and length of crawled increases by 1
+        Expectation: Once all links are crawled, len_to_crawl should be 0 and len crawled should be equal to number of links
 
         :return:
         """
@@ -79,8 +79,8 @@ class TestWorkerBasic(unittest.TestCase):
         len_to_crawl_after = len(worker.to_crawl)
         len_crawled_after = len(worker.crawled)
 
-        self.assertEqual(len_to_crawl_before,len_to_crawl_after+1)
-        self.assertEqual(len_crawled_before,len_crawled_after-1)
+        self.assertEqual(len_to_crawl_before,0)
+        self.assertEqual(len_crawled_before+len_to_crawl_before,len_crawled_after)
 
 
 
