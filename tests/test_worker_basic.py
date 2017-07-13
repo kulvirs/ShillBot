@@ -49,7 +49,7 @@ class TestWorkerBasic(unittest.TestCase):
         len_to_crawl_after = len(worker.to_crawl)
 
         self.assertEqual(len_to_crawl_after, len_to_crawl_before)
-
+		
     # def test_worker_add_links_in_crawled(self):
         # worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         # worker.crawled = []
@@ -59,7 +59,26 @@ class TestWorkerBasic(unittest.TestCase):
         # len_to_crawl_after = len(worker.to_crawl)
 
         # self.assertEqual(len_to_crawl_after, len_to_crawl_before)
-
+		
+	def test_worker_crawl_links(self):
+		"""
+		Purpose: Test if worker.to_crawl and worker.crawled are updated correctly after a link is crawled
+		Expectation: Everytime a link is crawled, length of to_crawl decreases by 1 and length of crawled increases by 1
+		"""
+		worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+		worker.crawled = []
+		worker.to_crawl = []
+		
+		len_to_crawl_before = len(worker.to_crawl)
+		len_crawled_before = len(worker.crawled)
+		
+		worker.run
+		
+		len_to_crawl_after = len(worker.to_crawl)
+		len_crawled_after = len(worker.crawled)
+		
+		self.assertEqual(len_to_crawl_before,len_to_crawl_after+1)
+		self.assertEqual(len_crawled_before,len_crawled_after-1)
 
 
 
