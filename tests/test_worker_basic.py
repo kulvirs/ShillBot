@@ -63,7 +63,7 @@ class TestWorkerBasic(unittest.TestCase):
         
     def test_worker_crawl_links(self):
         """
-        Purpose: Test if worker.to_crawl and worker.crawled are updated correctly after a link is crawled
+        Purpose: Test if worker.to_crawl and worker.crawled are updated correctly after links are crawled
         Expectation: Once all links are crawled, len_to_crawl should be 0 and len crawled should be equal to number of links
 
         :return:
@@ -81,6 +81,14 @@ class TestWorkerBasic(unittest.TestCase):
 
         self.assertEqual(len_to_crawl_after,0)
         self.assertEqual(len_crawled_before+num_links_to_crawl,len_crawled_after)
+        
+    def test_worker_invalid_links(self)
+        """
+        Purpose: Test running of worker if it is given an invalid link to crawl.
+        Expectation: WorkerException is raised.
+        """
+        worker = BasicUserParseWorker("http://gdalskjfakl.com/")
+        self.assertRaises(WorkerException,worker.run)
 
 
 
