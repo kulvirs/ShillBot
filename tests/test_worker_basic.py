@@ -69,7 +69,7 @@ class TestWorkerBasic(unittest.TestCase):
         :return:
         """
         server = MothershipServer();
-        server.run;
+        server.run();
         
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
