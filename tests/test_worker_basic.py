@@ -71,7 +71,7 @@ class TestWorkerBasic(unittest.TestCase):
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
         
-        len_to_crawl_before = len(worker.to_crawl)
+        num_links_to_crawl = len(worker.to_crawl)
         len_crawled_before = len(worker.crawled)
 
         self.assertRaises(ConnectionRefusedError, worker.run)
@@ -79,8 +79,8 @@ class TestWorkerBasic(unittest.TestCase):
         len_to_crawl_after = len(worker.to_crawl)
         len_crawled_after = len(worker.crawled)
 
-        self.assertEqual(len_to_crawl_before,len_to_crawl_after+len_crawled_after)
-        self.assertEqual(len_crawled_before+len_to_crawl_before,len_crawled_after)
+        self.assertEqual(len_to_crawl_after,0)
+        self.assertEqual(len_crawled_before+num_links_to_crawl,len_crawled_after)
 
 
 
