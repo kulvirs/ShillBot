@@ -95,7 +95,7 @@ class TestWorkerBasic(unittest.TestCase):
         Expectation: The size of to_crawl increases by the size of the list
         """
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
-        len_to_crawl_before = len(worker2.to_crawl)
+        len_to_crawl_before = len(worker.to_crawl)
         
         li = ["https://www.reddit.com/user/Chrikelnel/comments/","https://www.reddit.com/user/Chrikelnel/submitted/","https://www.reddit.com/user/Chrikelnel/gilded/"]
         worker.add_links(li);
