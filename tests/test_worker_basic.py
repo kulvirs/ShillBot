@@ -94,7 +94,7 @@ class TestWorkerBasic(unittest.TestCase):
         Purpose: Test adding a list of links to worker to_crawl
         Expectation: The size of to_crawl increases by the size of the list
         """
-        worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
+        worker2 = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         len_to_crawl_before = len(worker.to_crawl)
         
         li = ["www.firstlink.com","www.secondlink.com","www.thirdlink.com"]
