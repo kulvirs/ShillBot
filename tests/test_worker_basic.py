@@ -68,12 +68,10 @@ class TestWorkerBasic(unittest.TestCase):
         """
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         worker.crawled = []
-        
         num_links_to_crawl = len(worker.to_crawl)
         len_crawled_before = len(worker.crawled)
 
         self.assertRaises(ConnectionRefusedError, worker.run)
-
         len_to_crawl_after = len(worker.to_crawl)
         len_crawled_after = len(worker.crawled)
 
@@ -91,15 +89,14 @@ class TestWorkerBasic(unittest.TestCase):
         
     def test_worker_add_links_list(self):
         """
-        Purpose: Test adding a list of links to worker to_crawl
-        Expectation: The size of to_crawl increases by the size of the list
+        Purpose: Test adding a list of links to worker to_crawl, with duplicate links in the list
+        Expectation: The size of to_crawl increases by the size of the unique items in the list (which is 3 in this test)
         """
         worker = BasicUserParseWorker("https://www.reddit.com/user/Chrikelnel")
         len_to_crawl_before = len(worker.to_crawl)
         
         li = ["https://www.reddit.com/user/Chrikelnel/comments/","https://www.reddit.com/user/Chrikelnel/submitted/","https://www.reddit.com/user/Chrikelnel/gilded/","https://www.reddit.com/user/Chrikelnel/comments/"]
         worker.add_links(li);
-        
         len_to_crawl_after = len(worker.to_crawl)
         
         self.assertEqual(len_to_crawl_before+3,len_to_crawl_after)
